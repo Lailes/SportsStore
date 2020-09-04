@@ -1,15 +1,16 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 
 namespace SportsStore.Controllers {
-    public class ProductController: Controller {
-        private IProductRepository _repository;
+    public class ProductController : Controller {
+        private readonly IProductRepository _repository;
 
         public ProductController(IProductRepository repository) {
             _repository = repository;
         }
-        
-        public ViewResult List() => View(_repository.Products);
+
+        public ViewResult List() {
+            return View(_repository.Products);
+        }
     }
 }
