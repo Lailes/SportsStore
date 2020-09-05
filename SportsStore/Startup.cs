@@ -21,8 +21,8 @@ namespace SportsStore {
                 options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"])
             );
 
-            services.AddMvc(service => service.EnableEndpointRouting = false);
             services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddMvc(service => service.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +37,8 @@ namespace SportsStore {
                     "{controller=Product}/{action=List}/{id?}"
                 );
             });
+            
+            SeedData.EnsurePopulated(app);
         }
     }
 }
