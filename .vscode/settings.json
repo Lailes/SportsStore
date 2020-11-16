@@ -1,0 +1,22 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.idea": true,
+        "**/.vs": true,
+        "**/.vscode": true,
+        "SportsStore/bin": true,
+        "**/bin": true,
+        "SportsStore.csproj": true,
+        "SportsStore/SportsStore.csproj": true,
+        ".gitignore": true,
+        "SportsStore.sln": true,
+        "**/SportsStore.sln": true,
+        "SportsStore/obj": true,
+        "**/obj": true
+    },
+    "explorerExclude.backup": null
+}
