@@ -1,16 +1,12 @@
-﻿@model IEnumerable<Product>
+﻿@model ProductListViewModel
 
-
-
-@if (Model == null) {
-    <h2>Model Is null</h2>
+@foreach (var product in Model.Products) {
+    <div>
+        <h3>@product.Name</h3>
+        @product.Description
+        <h4>@product.Price.ToString("C")</h4>
+    </div>
 }
-else {
-    @foreach (var product in Model) {
-        <div>
-            <h3>@product.Name</h3>
-            @product.Description
-            <h4>@product.Price.ToString("C")</h4>
-        </div>
-    }
+@if (Model.PagingInfo != null) {
+    <div page-model="@Model.PagingInfo" page-action="List"></div>
 }

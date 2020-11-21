@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +11,8 @@ namespace SportsStore.Models {
             context.Database.Migrate();
 
             if (context.Products.Any()) return;
-            
-                context.Products.AddRange(
+
+            context.Products.AddRange(
                 new Product {
                     Name = "Kayak",
                     Description = "A boat for one person",

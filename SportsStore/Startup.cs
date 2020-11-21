@@ -11,7 +11,7 @@ namespace SportsStore {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
-
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -20,7 +20,7 @@ namespace SportsStore {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"])
             );
-
+            
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddMvc(service => service.EnableEndpointRouting = false);
         }
@@ -28,7 +28,7 @@ namespace SportsStore {
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-
+            
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvc(routes => {
