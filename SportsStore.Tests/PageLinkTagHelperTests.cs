@@ -10,10 +10,8 @@ using Xunit;
 
 namespace SportsStore.Tests {
     public class PageLinkTagHelperTests {
-
         [Fact]
         public void CanGeneratePageLinks() {
-
             var urlHelper = new Mock<IUrlHelper>();
             urlHelper.SetupSequence(x => x.Action(It.IsAny<UrlActionContext>()))
                 .Returns("Test/Page1")
@@ -40,16 +38,12 @@ namespace SportsStore.Tests {
 
             var content = new Mock<TagHelperContent>();
             var outPut = new TagHelperOutput("div", new TagHelperAttributeList(),
-                (cache, encoder) => Task.FromResult(content.Object));
+                (_, __) => Task.FromResult(content.Object));
             
             helper.Process(tagHelperContext, outPut);
-            
-            const string str = @"<a href=""Test/Page1"">0</a><a href=""Test/Page2"">1</a><a href=""Test/Page3"">2</a>";
-            
-            Assert.Equal(str, outPut.Content.GetContent());
+            const string str = @"<a href=""Test/Page1"">1</a><a href=""Test/Page2"">2</a><a href=""Test/Page3"">3</a>";
 
+            Assert.Equal(str, outPut.Content.GetContent());
         }
-        
-        
     }
 }
