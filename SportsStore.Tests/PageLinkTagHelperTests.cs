@@ -39,7 +39,7 @@ namespace SportsStore.Tests {
             var content = new Mock<TagHelperContent>();
             var outPut = new TagHelperOutput("div", new TagHelperAttributeList(),
                 (_, __) => Task.FromResult(content.Object));
-            
+
             helper.Process(tagHelperContext, outPut);
             const string str = @"<a href=""Test/Page1"">1</a><a href=""Test/Page2"">2</a><a href=""Test/Page3"">3</a>";
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +12,12 @@ namespace SportsStore.Models {
             if (context.Products.Any()) return;
 
             context.Products.AddRange(
+                new Product {
+                    Name = "Unsteady chair",
+                    Description = "Secretly give your opponent a disadvantage",
+                    Category = "Chess",
+                    Price = 29.95m
+                },
                 new Product {
                     Name = "Kayak",
                     Description = "A boat for one person",
@@ -42,12 +47,6 @@ namespace SportsStore.Models {
                     Description = "Improve brain efficiency by 75%",
                     Category = "Chess",
                     Price = 16
-                },
-                new Product {
-                    Name = "Unsteady chair",
-                    Description = "Secretly give your opponent a disadvantage",
-                    Category = "Chess",
-                    Price = 29.95m
                 },
                 new Product {
                     Name = "Human Chess board",

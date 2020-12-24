@@ -8,21 +8,26 @@ namespace SportsStore.Controllers {
         private readonly IProductRepository _repository;
 
         public int PageSize { get; set; } = 2;
-        
+
         public ProductController(IProductRepository repository) => _repository = repository;
 
-        public ViewResult List(int productPage = 1) => 
-            View(new ProductListViewModel {
-                Products = _repository
+        public ViewResult List(string category, int productPage = 1) {
+            var products = 
+                _repository
                     .Products
-                    .OrderBy(p => p.ProductId)
-                    .Skip((productPage-1)*PageSize)
-                    .Take(PageSize),
+                    .Where(p => category == null || p.Category == category)
+                    .OrderBy(p => p.ProductId);
+            
+            
+            return View(new ProductListViewModel {
+                Products = products.Skip((productPage - 1) * PageSize).Take(PageSize),
                 PagingInfo = new PagingInfo {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = _repository.Products.Count()
-                }
+                    TotalItems = products.Count()
+                },
+                CurrentCategory = category
             });
+        }
     }
 }

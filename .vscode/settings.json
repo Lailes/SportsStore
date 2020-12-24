@@ -16,7 +16,10 @@
         "SportsStore.sln": true,
         "**/SportsStore.sln": true,
         "SportsStore/obj": true,
-        "**/obj": true
+        "**/obj": true,
+        "**/SportsStore.Tests.csproj": true,
+        "**/SportsStore.sln.DotSettings.user": true
     },
-    "explorerExclude.backup": null
+    "explorerExclude.backup": null,
+    "cmake.configureOnOpen": false
 }

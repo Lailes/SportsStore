@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 
 namespace SportsStore.Models {
-    public class EFProductRepository : IProductRepository {
+    public class EfProductRepository : IProductRepository {
         private readonly ApplicationDbContext _context;
 
-        public EFProductRepository(ApplicationDbContext context) {
+        public EfProductRepository(ApplicationDbContext context) {
             _context = context;
         }
 
