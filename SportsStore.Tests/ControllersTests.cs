@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using SportsStore.Controllers;
@@ -47,7 +46,7 @@ namespace SportsStore.Tests {
                 PageSize = 3
             };
 
-			var result = (productController.List("Cat2", 1).ViewData.Model as ProductListViewModel).Products.ToArray();
+			var result = ((ProductListViewModel) productController.List("Cat2").ViewData.Model).Products.ToArray();
 
 			Assert.Equal(2, result.Length);
 			Assert.True(result[0].Name == "P2" && result[0].Category == "Cat2");
@@ -75,10 +74,12 @@ namespace SportsStore.Tests {
             var c1Count = ((ProductListViewModel) controller.List("C1").Model).PagingInfo.TotalItems;
             var c2Count = ((ProductListViewModel) controller.List("C2").Model).PagingInfo.TotalItems;
             var c3Count = ((ProductListViewModel) controller.List("C3").Model).PagingInfo.TotalItems;
+            var countTotal = ((ProductListViewModel) controller.List(null).Model).PagingInfo.TotalItems;
             
             Assert.Equal(3, c1Count);
             Assert.Equal(2, c2Count);
             Assert.Equal(1, c3Count);
+            Assert.Equal(6, countTotal);
         }
     }
 }
