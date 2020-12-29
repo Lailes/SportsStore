@@ -13,7 +13,7 @@ namespace SportsStore {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
-        
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -25,6 +25,8 @@ namespace SportsStore {
 
             services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddMvc(service => service.EnableEndpointRouting = false);
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,33 +35,35 @@ namespace SportsStore {
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            
+
+            app.UseSession();
+
             app.UseMvc(routes => {
                 routes.MapRoute(
-                    name: null,
-                    template: "{category}/Page{productPage:int}",
-                    defaults: new {controller = "Product", action = "List"}
+                    null,
+                    "{category}/Page{productPage:int}",
+                    new{controller = "Product", action = "List"}
                 );
 
                 routes.MapRoute(
-                    name: null,
-                    template: "Page{productPage:int}",
-                    defaults: new {controller = "Product", action = "List", productPage = 1}
-                );
-                
-                routes.MapRoute(
-                    name: null,
-                    template: "{category}",
-                    defaults: new {controller = "Product", action = "List", productPage = 1}
+                    null,
+                    "Page{productPage:int}",
+                    new{controller = "Product", action = "List", productPage = 1}
                 );
 
                 routes.MapRoute(
-                    name: null,
-                    template: "",
-                    defaults: new {controller = "Product", action = "List", productPage = 1}
+                    null,
+                    "{category}",
+                    new{controller = "Product", action = "List", productPage = 1}
                 );
 
-                routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
+                routes.MapRoute(
+                    null,
+                    "",
+                    new{controller = "Product", action = "List", productPage = 1}
+                );
+
+                routes.MapRoute(null, "{controller}/{action}/{id?}");
             });
             
             SeedData.EnsurePopulated(app);

@@ -23,8 +23,8 @@ namespace SportsStore.Tests {
                 .Setup(f => f.GetUrlHelper(It.IsAny<ActionContext>()))
                 .Returns(urlHelper.Object);
 
-            var helper = new PageLinkTagHelper(urlHelperFactory.Object) {
-                PageModel = new PagingInfo {
+            var helper = new PageLinkTagHelper(urlHelperFactory.Object){
+                PageModel = new PagingInfo{
                     CurrentPage = 2,
                     TotalItems = 28,
                     ItemsPerPage = 10

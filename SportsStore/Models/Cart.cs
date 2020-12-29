@@ -1,4 +1,4 @@
-﻿ using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SportsStore.Models {
@@ -8,24 +8,26 @@ namespace SportsStore.Models {
         public virtual void AddItem(Product product, int quantity) {
             var cartLine = _line.FirstOrDefault(p => p.Product.ProductId == product.ProductId);
 
-            if (cartLine == null) {
+            if (cartLine == null)
                 _line.Add(new CartLine{
                     Quantity = quantity,
                     Product = product
                 });
-            }
-            else {
+            else
                 cartLine.Quantity += quantity;
-            }
         }
 
-        public virtual void RemoveAll(Product product) =>
+        public virtual void RemoveAll(Product product) {
             _line.RemoveAll(p => p.Product.ProductId == product.ProductId);
+        }
 
-        public virtual decimal CalculateTotalPrice() =>
-            _line.Sum(l => l.Product.Price * l.Quantity);
+        public virtual decimal CalculateTotalPrice() {
+            return _line.Sum(l => l.Product.Price * l.Quantity);
+        }
 
-        public virtual void Clear() => _line.Clear();
+        public virtual void Clear() {
+            _line.Clear();
+        }
 
         public virtual IEnumerable<CartLine> Lines => _line;
     }
