@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Infrastructure;
 using SportsStore.Models;
+using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Controllers {
     public class CartController : Controller {
@@ -12,7 +14,10 @@ namespace SportsStore.Controllers {
             ProductRepository = productRepository;
         }
 
-        
+        public ViewResult Index(string returnUrl) => View(new CartIndexViewModel{
+            ReturnUrl = returnUrl, 
+            Cart = GetCart()
+        });
         public RedirectToActionResult AddToCart(int productId, string returnUrl) {
             var product = ProductRepository.Products
                 .FirstOrDefault(p => p.ProductId == productId);
