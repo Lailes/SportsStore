@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,9 @@ namespace SportsStore {
             );
 
             services.AddTransient<IProductRepository, EfProductRepository>();
+            services.AddScoped(SessionCart.GetCart);
             services.AddMvc(service => service.EnableEndpointRouting = false);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMemoryCache();
             services.AddSession();
         }
