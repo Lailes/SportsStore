@@ -34,5 +34,8 @@
     </tfoot>
 </table>
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+    <span>
+        <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+        <a class="btn btn-primary" asp-action="ClearCart" asp-route-returnUrl="@Model.ReturnUrl">Clear cart</a>
+    </span>
 </div>

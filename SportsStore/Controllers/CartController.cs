@@ -43,6 +43,13 @@ namespace SportsStore.Controllers {
             return RedirectToAction("Index", new{returnUrl});
         }
 
+        public RedirectToActionResult ClearCart(string returnUrl) {
+            var cart = GetCart();
+            cart.Clear();
+            SaveCart(cart);
+            return RedirectToAction("Index", new CartIndexViewModel{Cart = cart, ReturnUrl = returnUrl});
+        }
+
         private Cart GetCart() => HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
 
         private void SaveCart(Cart cart) => HttpContext.Session.SetJson("Cart", cart);

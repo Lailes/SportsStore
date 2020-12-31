@@ -6,6 +6,7 @@
     &lt;TestId&gt;xUnit::738D7352-9116-48CB-A29B-3BB257BD1E18::net5.0::SportsStore.Tests.ProductCartTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/IdeIntegrationViewOptions/FilterSnapshotsBySolution/@EntryValue">True</s:Boolean>
 	
 	
 	</wpf:ResourceDictionary>
