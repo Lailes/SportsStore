@@ -1,31 +1,29 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportsStore.Infrastructure;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Controllers {
     public class CartController : Controller {
 
-        public IProductRepository ProductRepository { get; set; }
-
-        public CartController(IProductRepository productRepository) {
+        private IProductRepository ProductRepository { get; set; }
+        private Cart CartService { get; set; }
+        
+        public CartController(IProductRepository productRepository, Cart cartService) {
             ProductRepository = productRepository;
+            CartService = cartService;
         }
 
         public ViewResult Index(string returnUrl) => View(new CartIndexViewModel{
             ReturnUrl = returnUrl, 
-            Cart = GetCart()
+            Cart = CartService
         });
         public RedirectToActionResult AddToCart(int productId, string returnUrl) {
             var product = ProductRepository.Products
                 .FirstOrDefault(p => p.ProductId == productId);
 
             if (product != null) {
-                var cart = GetCart();
-                cart.AddItem(product, 1);
-                SaveCart(cart);
+                CartService.AddItem(product, 1);
             }
 
             return RedirectToAction("Index", new{returnUrl});
@@ -35,23 +33,15 @@ namespace SportsStore.Controllers {
             var product = ProductRepository.Products.FirstOrDefault(p => p.ProductId == productId);
 
             if (product != null) {
-                var cart = GetCart();
-                cart.RemoveAll(product);
-                SaveCart(cart);
+                CartService.RemoveAll(product);
             }
             
             return RedirectToAction("Index", new{returnUrl});
         }
 
         public RedirectToActionResult ClearCart(string returnUrl) {
-            var cart = GetCart();
-            cart.Clear();
-            SaveCart(cart);
-            return RedirectToAction("Index", new CartIndexViewModel{Cart = cart, ReturnUrl = returnUrl});
+            CartService.Clear();
+            return RedirectToAction("Index", new CartIndexViewModel{Cart = CartService, ReturnUrl = returnUrl});
         }
-
-        private Cart GetCart() => HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
-
-        private void SaveCart(Cart cart) => HttpContext.Session.SetJson("Cart", cart);
     }
 }

@@ -23,7 +23,6 @@ namespace SportsStore {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration[Config])
             );
-
             services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddScoped(SessionCart.GetCart);
             services.AddMvc(service => service.EnableEndpointRouting = false);
