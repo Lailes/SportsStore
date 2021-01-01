@@ -14,28 +14,17 @@ namespace SportsStore.Controllers {
             CartService = cartService;
         }
 
-        public ViewResult Index(string returnUrl) => View(new CartIndexViewModel{
-            ReturnUrl = returnUrl, 
-            Cart = CartService
-        });
+        public ViewResult Index(string returnUrl) => View(new CartIndexViewModel{ ReturnUrl = returnUrl, Cart = CartService });
+        
         public RedirectToActionResult AddToCart(int productId, string returnUrl) {
-            var product = ProductRepository.Products
-                .FirstOrDefault(p => p.ProductId == productId);
-
-            if (product != null) {
-                CartService.AddItem(product, 1);
-            }
-
+            var product = ProductRepository.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null) CartService.AddItem(product, 1);
             return RedirectToAction("Index", new{returnUrl});
         }
 
         public RedirectToActionResult RemoveFromCart(int productId, string returnUrl) {
             var product = ProductRepository.Products.FirstOrDefault(p => p.ProductId == productId);
-
-            if (product != null) {
-                CartService.RemoveAll(product);
-            }
-            
+            if (product != null) CartService.Remove(product);
             return RedirectToAction("Index", new{returnUrl});
         }
 
