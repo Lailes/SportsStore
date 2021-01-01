@@ -10,7 +10,10 @@
 </head>
 <body>
 <div class="navbar navbar-expand-sm bg-primary" role="navigation">
-    <a >SportsStore</a>
+    <label>SPORTS STORE</label>
+    <div style="float: right">
+        @await Component.InvokeAsync("CartSummary")
+    </div>
 </div>
 <div class="row m-1 p-1">
     <div id="categories" class="col-3">
