@@ -35,12 +35,11 @@ namespace SportsStore {
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
-            app.UseStatusCodePages();
-            app.UseStaticFiles();
-
-            app.UseSession();
-
-            app.UseMvc(routes => {
+            app
+                .UseStatusCodePages()
+                .UseStaticFiles()
+                .UseSession()
+                .UseMvc(routes => {
                 routes.MapRoute(
                     null,
                     "{category}/Page{productPage:int}",

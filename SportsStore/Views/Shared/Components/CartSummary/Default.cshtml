@@ -1,16 +1,6 @@
 ﻿@model Cart
 
-<div class="" style="display: inline-block">
-    <!--@if (Model.Lines.Any()) {
-        <small class="navbar-text">
-            <b>Your cart:</b> @Model.Lines.Sum(x => x.Quantity) item(s) @Model.CalculateTotalPrice().ToString("c")
-        </small>
-    }
-    else {
-        <small class="navbar-text">
-            <b>Your cart empty</b>
-        </small>
-    }-->
+<div>
     <a class="btn btn-sm btn-secondary navbar-btn"
        asp-controller="Cart" asp-action="Index"
        asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
