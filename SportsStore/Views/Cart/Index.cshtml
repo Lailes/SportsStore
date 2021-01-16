@@ -44,5 +44,6 @@
     <span>
         <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
         <a class="btn btn-primary" asp-action="ClearCart" asp-route-returnUrl="@Model.ReturnUrl">Clear cart</a>
-    </span>
+        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Checkout</a>
+        </span>
 </div>

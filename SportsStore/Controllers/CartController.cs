@@ -5,10 +5,8 @@ using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Controllers {
     public class CartController : Controller {
-
         private IProductRepository ProductRepository { get; set; }
         private Cart CartService { get; set; }
-        
         public CartController(IProductRepository productRepository, Cart cartService) {
             ProductRepository = productRepository;
             CartService = cartService;

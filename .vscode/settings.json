@@ -21,5 +21,21 @@
         "**/SportsStore.sln.DotSettings.user": true
     },
     "explorerExclude.backup": null,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "connectString": "Server=localhost\\SQLEXPRESS;Database=SportsStore;Trusted_Connection=True;",
+            "name": "SportsStore"
+        }
+    ]
 }

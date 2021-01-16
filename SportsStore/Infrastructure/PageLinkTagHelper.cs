@@ -15,7 +15,6 @@ namespace SportsStore.Infrastructure {
             _urlHelperFactory = urlHelperFactory;
         }
 
-
         [ViewContext] [HtmlAttributeNotBound] public ViewContext ViewContext { get; set; }
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
@@ -47,5 +46,6 @@ namespace SportsStore.Infrastructure {
 
             output.Content.AppendHtml(result.InnerHtml);
         }
+
     }
 }

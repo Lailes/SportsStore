@@ -20,7 +20,6 @@ namespace SportsStore.Controllers {
                     .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.ProductId);
 
-
             return View(new ProductListViewModel{
                 Products = products.Skip((productPage - 1) * PageSize).Take(PageSize),
                 PagingInfo = new PagingInfo{
