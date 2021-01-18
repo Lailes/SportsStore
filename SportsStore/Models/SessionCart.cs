@@ -6,10 +6,8 @@ using SportsStore.Infrastructure;
 
 namespace SportsStore.Models {
     public class SessionCart : Cart {
+        [JsonIgnore] public ISession Session { get; set; }
 
-        [JsonIgnore] 
-        public ISession Session { get; set; }
-        
         public static Cart GetCart(IServiceProvider provider) {
             var session = provider.GetRequiredService<IHttpContextAccessor>()?.HttpContext?.Session;
             var cart = session?.GetJson<SessionCart>("Cart") ?? new SessionCart();

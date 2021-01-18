@@ -5,7 +5,7 @@ namespace SportsStore.Migrations {
         protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 "Products",
-                table => new{
+                table => new {
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),

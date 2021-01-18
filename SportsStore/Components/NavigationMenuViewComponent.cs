@@ -4,11 +4,11 @@ using SportsStore.Models;
 
 namespace SportsStore.Components {
     public class NavigationMenuViewComponent : ViewComponent {
-        public IProductRepository ProductRepository { get; set; }
-
         public NavigationMenuViewComponent(IProductRepository productRepository) {
             ProductRepository = productRepository;
         }
+
+        public IProductRepository ProductRepository { get; set; }
 
         public IViewComponentResult Invoke() {
             ViewBag.SelectedCategory = RouteData?.Values["category"];

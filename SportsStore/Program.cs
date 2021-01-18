@@ -1,17 +1,16 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SportsStore;
 
 namespace SportsStore {
     public class Program {
         public static void Main(string[] args) {
             CreateHostBuilder(args).Build().Run();
         }
-        
+
         public static IHostBuilder CreateHostBuilder(string[] args) {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
                 .UseDefaultServiceProvider(options => options.ValidateScopes = false);
         }
     }
-} 
+}

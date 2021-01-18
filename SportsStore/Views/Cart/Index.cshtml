@@ -25,7 +25,7 @@
                 <form asp-controller="Cart" asp-action="RemoveFromCart">
                     <input type="hidden" name="ProductID" value="@line.Product.ProductId">
                     <input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
-                    <input type="submit" value="Remove" class="btn btn-sm btn-danger" />
+                    <input type="submit" value="Remove" class="btn btn-sm btn-danger"/>
                 </form>
             </td>
         </tr>
@@ -45,5 +45,5 @@
         <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
         <a class="btn btn-primary" asp-action="ClearCart" asp-route-returnUrl="@Model.ReturnUrl">Clear cart</a>
         <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Checkout</a>
-        </span>
+    </span>
 </div>

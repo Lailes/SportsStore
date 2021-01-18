@@ -1,87 +1,77 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SportsStore.Migrations
-{
-    public partial class Orders : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace SportsStore.Migrations {
+    public partial class Orders : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.RenameColumn(
-                name: "ProductID",
-                table: "Products",
-                newName: "ProductId");
+                "ProductID",
+                "Products",
+                "ProductId");
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderID = table.Column<int>(type: "int", nullable: false)
+                "Orders",
+                table => new {
+                    OrderID = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Line1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Line2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Line3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GiftWrap = table.Column<bool>(type: "bit", nullable: false)
+                    Name = table.Column<string>("nvarchar(max)", nullable: false),
+                    Line1 = table.Column<string>("nvarchar(max)", nullable: false),
+                    Line2 = table.Column<string>("nvarchar(max)", nullable: true),
+                    Line3 = table.Column<string>("nvarchar(max)", nullable: true),
+                    City = table.Column<string>("nvarchar(max)", nullable: false),
+                    State = table.Column<string>("nvarchar(max)", nullable: false),
+                    Zip = table.Column<string>("nvarchar(max)", nullable: true),
+                    Country = table.Column<string>("nvarchar(max)", nullable: false),
+                    GiftWrap = table.Column<bool>("bit", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderID);
-                });
+                constraints: table => { table.PrimaryKey("PK_Orders", x => x.OrderID); });
 
             migrationBuilder.CreateTable(
-                name: "CartLine",
-                columns: table => new
-                {
-                    CartLineId = table.Column<int>(type: "int", nullable: false)
+                "CartLine",
+                table => new {
+                    CartLineId = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>("int", nullable: true),
+                    Quantity = table.Column<int>("int", nullable: false),
+                    OrderID = table.Column<int>("int", nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_CartLine", x => x.CartLineId);
                     table.ForeignKey(
-                        name: "FK_CartLine_Orders_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Orders",
-                        principalColumn: "OrderID",
+                        "FK_CartLine_Orders_OrderID",
+                        x => x.OrderID,
+                        "Orders",
+                        "OrderID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CartLine_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
+                        "FK_CartLine_Products_ProductId",
+                        x => x.ProductId,
+                        "Products",
+                        "ProductId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartLine_OrderID",
-                table: "CartLine",
-                column: "OrderID");
+                "IX_CartLine_OrderID",
+                "CartLine",
+                "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartLine_ProductId",
-                table: "CartLine",
-                column: "ProductId");
+                "IX_CartLine_ProductId",
+                "CartLine",
+                "ProductId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
-                name: "CartLine");
+                "CartLine");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                "Orders");
 
             migrationBuilder.RenameColumn(
-                name: "ProductId",
-                table: "Products",
-                newName: "ProductID");
+                "ProductId",
+                "Products",
+                "ProductID");
         }
     }
 }

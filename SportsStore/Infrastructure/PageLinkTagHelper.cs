@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using SportsStore.Models;
-using System.Collections.Generic;
 
 namespace SportsStore.Infrastructure {
     [HtmlTargetElement("div", Attributes = "page-model")]
@@ -46,6 +46,5 @@ namespace SportsStore.Infrastructure {
 
             output.Content.AppendHtml(result.InnerHtml);
         }
-
     }
 }

@@ -41,33 +41,33 @@ namespace SportsStore {
                 .UseStaticFiles()
                 .UseSession()
                 .UseMvc(routes => {
-                routes.MapRoute(
-                    null,
-                    "{category}/Page{productPage:int}",
-                    new{controller = "Product", action = "List"}
-                );
+                    routes.MapRoute(
+                        null,
+                        "{category}/Page{productPage:int}",
+                        new {controller = "Product", action = "List"}
+                    );
 
-                routes.MapRoute(
-                    null,
-                    "Page{productPage:int}",
-                    new{controller = "Product", action = "List", productPage = 1}
-                );
+                    routes.MapRoute(
+                        null,
+                        "Page{productPage:int}",
+                        new {controller = "Product", action = "List", productPage = 1}
+                    );
 
-                routes.MapRoute(
-                    null,
-                    "{category}",
-                    new{controller = "Product", action = "List", productPage = 1}
-                );
+                    routes.MapRoute(
+                        null,
+                        "{category}",
+                        new {controller = "Product", action = "List", productPage = 1}
+                    );
 
-                routes.MapRoute(
-                    null,
-                    "",
-                    new{controller = "Product", action = "List", productPage = 1}
-                );
+                    routes.MapRoute(
+                        null,
+                        "",
+                        new {controller = "Product", action = "List", productPage = 1}
+                    );
 
-                routes.MapRoute(null, "{controller}/{action}/{id?}");
-            });
-            
+                    routes.MapRoute(null, "{controller}/{action}/{id?}");
+                });
+
             SeedData.EnsurePopulated(app);
         }
     }

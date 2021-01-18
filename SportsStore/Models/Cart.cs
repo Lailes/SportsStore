@@ -3,13 +3,15 @@ using System.Linq;
 
 namespace SportsStore.Models {
     public class Cart {
-        private List<CartLine> _line = new();
+        private readonly List<CartLine> _line = new();
+
+        public virtual IEnumerable<CartLine> Lines => _line;
 
         public virtual void AddItem(Product product, int quantity) {
             var cartLine = _line.FirstOrDefault(p => p.Product.ProductId == product.ProductId);
 
             if (cartLine == null)
-                _line.Add(new CartLine{
+                _line.Add(new CartLine {
                     Quantity = quantity,
                     Product = product
                 });
@@ -24,11 +26,9 @@ namespace SportsStore.Models {
         public virtual void Remove(Product product) {
             var line = _line.FirstOrDefault(c => c.Product.ProductId == product.ProductId);
             if (line == null) return;
-            if (line.Quantity > 1) {
+            if (line.Quantity > 1)
                 line.Quantity -= 1;
-            }else if (line.Quantity == 1) {
-                RemoveAll(product);   
-            }
+            else if (line.Quantity == 1) RemoveAll(product);
         }
 
         public virtual decimal CalculateTotalPrice() {
@@ -38,8 +38,6 @@ namespace SportsStore.Models {
         public virtual void Clear() {
             _line.Clear();
         }
-
-        public virtual IEnumerable<CartLine> Lines => _line;
     }
 
     public class CartLine {

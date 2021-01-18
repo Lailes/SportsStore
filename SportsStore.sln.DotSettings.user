@@ -1,11 +1,18 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6337046a_002D80a0_002D4ffd_002D8f11_002D5e44976a2f05/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="OrderControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/CustomBuildToolPath/@EntryValue">C:\Program Files\dotnet\sdk\5.0.102\MSBuild.dll</s:String>
+	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/BuildTool/MsBuildSolutionLoadingNodeCount/@EntryValue">8</s:Int64>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=18651690_002Db104_002D492a_002Da3fb_002D93ec179b0efc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AdminControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::738D7352-9116-48CB-A29B-3BB257BD1E18::net5.0::SportsStore.Tests.OrderControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::738D7352-9116-48CB-A29B-3BB257BD1E18::net5.0::SportsStore.Tests.AdminControllerTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5dcdf584_002D333f_002D4295_002D9168_002D472bcaf6cd01/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
 	
 	<s:Boolean x:Key="/Default/IdeIntegrationViewOptions/FilterSnapshotsBySolution/@EntryValue">True</s:Boolean>
 	
