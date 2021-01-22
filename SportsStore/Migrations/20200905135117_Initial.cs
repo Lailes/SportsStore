@@ -1,11 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SportsStore.Migrations {
-    public partial class Initial : Migration {
-        protected override void Up(MigrationBuilder migrationBuilder) {
+namespace SportsStore.Migrations
+{
+    public partial class Initial : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 "Products",
-                table => new {
+                table => new
+                {
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
@@ -16,7 +20,8 @@ namespace SportsStore.Migrations {
                 constraints: table => { table.PrimaryKey("PK_Products", x => x.ProductID); });
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder) {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.DropTable(
                 "Products");
         }

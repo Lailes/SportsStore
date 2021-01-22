@@ -2,10 +2,13 @@
 using SportsStore.Models;
 using Xunit;
 
-namespace SportsStore.Tests {
-    public class ProductCartTests {
+namespace SportsStore.Tests
+{
+    public class ProductCartTests
+    {
         [Fact]
-        public void TestAddNewLine() {
+        public void TestAddNewLine()
+        {
             var productCart = new Cart();
             productCart.AddItem(new Product {Price = 100, ProductId = 1}, 1);
             productCart.AddItem(new Product {Price = 110, ProductId = 2}, 1);
@@ -16,7 +19,8 @@ namespace SportsStore.Tests {
         }
 
         [Fact]
-        public void TestAddQuantity() {
+        public void TestAddQuantity()
+        {
             var productCart = new Cart();
             productCart.AddItem(new Product {Price = 100, ProductId = 1}, 1);
             productCart.AddItem(new Product {Price = 110, ProductId = 2}, 1);
@@ -41,7 +45,8 @@ namespace SportsStore.Tests {
         }
 
         [Fact]
-        public void TestTotalCalc() {
+        public void TestTotalCalc()
+        {
             var productCart = new Cart();
             productCart.AddItem(new Product {Price = 100, ProductId = 1}, 1);
             productCart.AddItem(new Product {Price = 110, ProductId = 2}, 1);
@@ -53,7 +58,8 @@ namespace SportsStore.Tests {
         }
 
         [Fact]
-        public void TestClear() {
+        public void TestClear()
+        {
             var productCart = new Cart();
             productCart.AddItem(new Product {Price = 100, ProductId = 1}, 1);
             productCart.AddItem(new Product {Price = 110, ProductId = 2}, 1);
@@ -73,7 +79,8 @@ namespace SportsStore.Tests {
         [InlineData(2)]
         [InlineData(3)]
         [InlineData(4)]
-        public void TestRemoveAll(int productIdForRemove) {
+        public void TestRemoveAll(int productIdForRemove)
+        {
             var productCart = new Cart();
             productCart.AddItem(new Product {Price = 100, ProductId = 1}, 1);
             productCart.AddItem(new Product {Price = 110, ProductId = 2}, 1);

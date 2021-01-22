@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SportsStore.Migrations {
-    public partial class Orders : Migration {
-        protected override void Up(MigrationBuilder migrationBuilder) {
+namespace SportsStore.Migrations
+{
+    public partial class Orders : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.RenameColumn(
                 "ProductID",
                 "Products",
@@ -10,7 +13,8 @@ namespace SportsStore.Migrations {
 
             migrationBuilder.CreateTable(
                 "Orders",
-                table => new {
+                table => new
+                {
                     OrderID = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>("nvarchar(max)", nullable: false),
@@ -27,14 +31,16 @@ namespace SportsStore.Migrations {
 
             migrationBuilder.CreateTable(
                 "CartLine",
-                table => new {
+                table => new
+                {
                     CartLineId = table.Column<int>("int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>("int", nullable: true),
                     Quantity = table.Column<int>("int", nullable: false),
                     OrderID = table.Column<int>("int", nullable: true)
                 },
-                constraints: table => {
+                constraints: table =>
+                {
                     table.PrimaryKey("PK_CartLine", x => x.CartLineId);
                     table.ForeignKey(
                         "FK_CartLine_Orders_OrderID",
@@ -61,7 +67,8 @@ namespace SportsStore.Migrations {
                 "ProductId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder) {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.DropTable(
                 "CartLine");
 

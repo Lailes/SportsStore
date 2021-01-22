@@ -5,13 +5,17 @@ using SportsStore.Models;
 using SportsStore.Models.ViewModels;
 using Xunit;
 
-namespace SportsStore.Tests {
-    public class ControllersTests {
+namespace SportsStore.Tests
+{
+    public class ControllersTests
+    {
         [Fact]
-        public void ListTest() {
+        public void ListTest()
+        {
             var mockRepo = new Mock<IProductRepository>();
             mockRepo.Setup(m => m.Products)
-                .Returns(new[] {
+                .Returns(new[]
+                {
                     new Product {ProductId = 1, Name = "P1"},
                     new Product {ProductId = 2, Name = "P2"},
                     new Product {ProductId = 3, Name = "P3"},
@@ -31,9 +35,11 @@ namespace SportsStore.Tests {
         }
 
         [Fact]
-        public void CanFilter() {
+        public void CanFilter()
+        {
             var mock = new Mock<IProductRepository>();
-            mock.Setup(repo => repo.Products).Returns(new Product[] {
+            mock.Setup(repo => repo.Products).Returns(new Product[]
+            {
                 new() {ProductId = 1, Name = "P1", Category = "Cat1"},
                 new() {ProductId = 2, Name = "P2", Category = "Cat2"},
                 new() {ProductId = 3, Name = "P3", Category = "Cat1"},
@@ -41,7 +47,8 @@ namespace SportsStore.Tests {
                 new() {ProductId = 5, Name = "P5", Category = "Cat3"}
             }.AsQueryable());
 
-            var productController = new ProductController(mock.Object) {
+            var productController = new ProductController(mock.Object)
+            {
                 PageSize = 3
             };
 
@@ -53,11 +60,13 @@ namespace SportsStore.Tests {
         }
 
         [Fact]
-        public void CanCategorySpecialCount() {
+        public void CanCategorySpecialCount()
+        {
             var mock = new Mock<IProductRepository>();
             mock
                 .SetupGet(p => p.Products)
-                .Returns(() => new Product[] {
+                .Returns(() => new Product[]
+                {
                     new() {Category = "C1", Name = "P1"},
                     new() {Category = "C1", Name = "P2"},
                     new() {Category = "C2", Name = "P3"},
@@ -66,7 +75,8 @@ namespace SportsStore.Tests {
                     new() {Category = "C1", Name = "P5"}
                 }.AsQueryable());
 
-            var controller = new ProductController(mock.Object) {
+            var controller = new ProductController(mock.Object)
+            {
                 PageSize = 10
             };
 

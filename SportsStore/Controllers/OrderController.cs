@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 
-namespace SportsStore.Controllers {
-    public class OrderController : Controller {
-        public OrderController(IOrderRepository orderRepository, Cart cart) {
+namespace SportsStore.Controllers
+{
+    public class OrderController : Controller
+    {
+        public OrderController(IOrderRepository orderRepository, Cart cart)
+        {
             OrderRepository = orderRepository;
             CartService = cart;
         }
@@ -13,14 +16,17 @@ namespace SportsStore.Controllers {
         private Cart CartService { get; }
 
 
-        public ViewResult List() {
+        public ViewResult List()
+        {
             return View(OrderRepository.Orders.Where(o => !o.Shipped));
         }
 
         [HttpPost]
-        public IActionResult MarkShipped(int orderId) {
+        public IActionResult MarkShipped(int orderId)
+        {
             var order = OrderRepository.Orders.FirstOrDefault(o => o.OrderID == orderId);
-            if (order != null) {
+            if (order != null)
+            {
                 order.Shipped = true;
                 OrderRepository.SaveOrder(order);
             }
@@ -30,12 +36,14 @@ namespace SportsStore.Controllers {
 
 
         [HttpGet]
-        public ViewResult Checkout() {
+        public ViewResult Checkout()
+        {
             return View(new Order());
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order) {
+        public IActionResult Checkout(Order order)
+        {
             if (!CartService.Lines.Any()) ModelState.AddModelError("", "Sorry, your cart is empty!");
 
             if (!ModelState.IsValid) return View(order);
@@ -45,7 +53,8 @@ namespace SportsStore.Controllers {
             return RedirectToAction("Completed");
         }
 
-        public ViewResult Completed() {
+        public ViewResult Completed()
+        {
             CartService.Clear();
             return View();
         }

@@ -11,7 +11,8 @@
         <th class="text-center">Price</th>
         <th class="text-center">Actions</th>
     </tr>
-    @foreach (var product in Model) {
+    @foreach (var product in Model)
+    {
         <tr>
             <td class="text-center">@product.ProductId</td>
             <td>@product.Name</td>
@@ -21,7 +22,7 @@
                     <a asp-action="Edit" class="btn btn-warning btn-sm" asp-route-productId="@product.ProductId">
                         Edit
                     </a>
-                    <input type="hidden" name="ProductID" value="@product.ProductId" />
+                    <input type="hidden" name="ProductID" value="@product.ProductId"/>
                     <button type="submit" class="btn btn-danger btn-sm">
                         Delete
                     </button>

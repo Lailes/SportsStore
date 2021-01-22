@@ -4,10 +4,13 @@ using SportsStore.Controllers;
 using SportsStore.Models;
 using Xunit;
 
-namespace SportsStore.Tests {
-    public class OrderControllerTests {
+namespace SportsStore.Tests
+{
+    public class OrderControllerTests
+    {
         [Fact]
-        public void CantCheckoutEmptyCart() {
+        public void CantCheckoutEmptyCart()
+        {
             var mock = new Mock<IOrderRepository>();
             var cart = new Cart();
             var order = new Order();
