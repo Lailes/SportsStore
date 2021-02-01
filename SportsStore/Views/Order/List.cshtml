@@ -16,7 +16,7 @@
                 <td>@order.Name</td><td>@order.Zip</td><td>Product</td><td>Quantity</td>
                 <td>
                     <form asp-action="MarkShipped" method="post">
-                        <input type="hidden" name="orderId" value="@order.OrderID">
+                        <input type="hidden" name="orderId" value="@order.OrderId">
                         <button type="submit" class="btn btn-sm btn-danger">
                             Ship
                         </button>

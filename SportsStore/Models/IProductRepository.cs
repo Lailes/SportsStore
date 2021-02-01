@@ -8,5 +8,7 @@ namespace SportsStore.Models
 
 
         public void SaveProduct(Product product);
+
+        public Product DeleteProduct(int productId);
     }
 }

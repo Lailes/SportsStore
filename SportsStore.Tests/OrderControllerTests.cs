@@ -19,7 +19,7 @@ namespace SportsStore.Tests
             var result = target.Checkout(order) as ViewResult;
 
             mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Never);
-
+                         
             Assert.True(string.IsNullOrEmpty(result.ViewName));
             Assert.False(result.ViewData.ModelState.IsValid);
         }

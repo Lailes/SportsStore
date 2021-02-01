@@ -11,7 +11,7 @@ namespace SportsStore.Components
             ProductRepository = productRepository;
         }
 
-        public IProductRepository ProductRepository { get; set; }
+        private IProductRepository ProductRepository { get; set; }
 
         public IViewComponentResult Invoke()
         {

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 using SportsStore.Models;
 
 namespace SportsStore
@@ -12,6 +13,7 @@ namespace SportsStore
     public class Startup
     {
         private const string Config = "Data:SportStoreProducts:ConnectionString";
+        private const string ConfigIdentity = "Data:SportsStoreIdentity:ConnectionString";
 
         public Startup(IConfiguration configuration)
         {
@@ -24,11 +26,15 @@ namespace SportsStore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration[Config])
-            );
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration[Config]));
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration[ConfigIdentity]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+            
             services.AddTransient<IProductRepository, EfProductRepository>();
-            services.AddTransient<IOrderRepository, EFOrderRepository>();
+            services.AddTransient<IOrderRepository, EfOrderRepository>();
             services.AddScoped(SessionCart.GetCart);
             services.AddMvc(service => service.EnableEndpointRouting = false);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -45,6 +51,7 @@ namespace SportsStore
                 .UseStatusCodePages()
                 .UseStaticFiles()
                 .UseSession()
+                .UseAuthentication()
                 .UseMvc(routes =>
                 {
                     routes.MapRoute(

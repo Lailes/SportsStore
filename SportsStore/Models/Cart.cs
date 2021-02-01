@@ -23,29 +23,23 @@ namespace SportsStore.Models
                 cartLine.Quantity += quantity;
         }
 
-        public virtual void RemoveAll(Product product)
-        {
-            _line.RemoveAll(p => p.Product.ProductId == product.ProductId);
-        }
+        public virtual void RemoveAll(Product product) => _line.RemoveAll(p => p.Product.ProductId == product.ProductId);
+        
 
         public virtual void Remove(Product product)
         {
-            var line = _line.FirstOrDefault(c => c.Product.ProductId == product.ProductId);
+            var line = _line.Find(c => c.Product.ProductId == product.ProductId);
             if (line == null) return;
             if (line.Quantity > 1)
-                line.Quantity -= 1;
+                line.Quantity--;
             else if (line.Quantity == 1) RemoveAll(product);
         }
 
-        public virtual decimal CalculateTotalPrice()
-        {
-            return _line.Sum(l => l.Product.Price * l.Quantity);
-        }
+        public virtual decimal CalculateTotalPrice() =>_line.Sum(l => l.Product.Price * l.Quantity);
+        
 
-        public virtual void Clear()
-        {
-            _line.Clear();
-        }
+        public virtual void Clear() => _line.Clear();
+        
     }
 
     public class CartLine

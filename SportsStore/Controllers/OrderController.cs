@@ -24,7 +24,7 @@ namespace SportsStore.Controllers
         [HttpPost]
         public IActionResult MarkShipped(int orderId)
         {
-            var order = OrderRepository.Orders.FirstOrDefault(o => o.OrderID == orderId);
+            var order = OrderRepository.Orders.FirstOrDefault(o => o.OrderId == orderId);
             if (order != null)
             {
                 order.Shipped = true;

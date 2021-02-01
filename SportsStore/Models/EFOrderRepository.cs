@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SportsStore.Models
 {
-    public class EFOrderRepository : IOrderRepository
+    public class EfOrderRepository : IOrderRepository
     {
-        public EFOrderRepository(ApplicationDbContext applicationDbContext)
+        public EfOrderRepository(ApplicationDbContext applicationDbContext)
         {
             ApplicationDbContext = applicationDbContext;
         }
@@ -15,9 +15,10 @@ namespace SportsStore.Models
         public void SaveOrder(Order order)
         {
             ApplicationDbContext.AttachRange(order.Lines.Select(l => l.Product));
-            if (order.OrderID == 0) ApplicationDbContext.Orders.Add(order);
+            if (order.OrderId == 0) ApplicationDbContext.Orders.Add(order);
 
             ApplicationDbContext.SaveChanges();
+
         }
 
         public IQueryable<Order> Orders => ApplicationDbContext

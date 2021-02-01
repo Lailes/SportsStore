@@ -85,7 +85,6 @@ namespace SportsStore.Tests
             Assert.Null(p5);
         }
 
-
         [Fact]
         public void CanSaveValidChanges()
         {
@@ -118,9 +117,34 @@ namespace SportsStore.Tests
             Assert.IsType<ViewResult>(result);
         }
 
-        private T GetViewModel<T>(ViewResult result) where T : class
+
+        [Fact]
+        public void CanDeleteTests()
         {
-            return result.ViewData.Model as T;
+
+            var prod1 = new Product {ProductId = 2, Name = "Pear"};
+            var prod2 = new Product {ProductId = 4, Name = "Orange"};
+            
+            var mock = new Mock<IProductRepository>();
+            var mockTempData = new Mock<ITempDataDictionary>();
+            mock.SetupGet(m => m.Products).Returns(new[]
+            {
+                new () {ProductId = 1, Name = "Apple"},
+                prod1,
+                new () {ProductId = 3, Name = "Lemon"},
+                prod2
+            }.AsQueryable());
+
+            var controller = new AdminController(mock.Object) 
+            {
+                TempData = mockTempData.Object
+            };
+
+            controller.Delete(2);
+            mock.Verify(rep => rep.DeleteProduct(prod1.ProductId), Times.Once);
         }
+
+        private T GetViewModel<T>(ViewResult result) where T : class => result.ViewData.Model as T;
+        
     }
 }
