@@ -1,7 +1,6 @@
 ﻿@model ProductListViewModel
 
-@foreach (var product in Model.Products)
-{
+@foreach (var product in Model.Products) {
     @await Html.PartialAsync("ProductSummary", product)
 }
 

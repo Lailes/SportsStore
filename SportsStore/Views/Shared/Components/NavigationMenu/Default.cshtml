@@ -7,8 +7,7 @@
     Home
 </a>
 
-@foreach (var category in Model)
-{
+@foreach (var category in Model) {
     <a class="btn btn-block @(category == ViewBag.SelectedCategory ? "btn-primary" : "btn-secondary")"
        asp-action="List"
        asp-controller="Product"

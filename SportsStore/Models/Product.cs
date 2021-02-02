@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SportsStore.Models
-{
-    public class Product
-    {
+namespace SportsStore.Models {
+    public class Product {
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Enter product name")]

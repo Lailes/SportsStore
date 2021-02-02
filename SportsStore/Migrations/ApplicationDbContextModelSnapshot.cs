@@ -4,21 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using SportsStore.Models;
 
-namespace SportsStore.Migrations
-{
+namespace SportsStore.Migrations {
     [DbContext(typeof(ApplicationDbContext))]
-    internal class ApplicationDbContextModelSnapshot : ModelSnapshot
-    {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
+    internal class ApplicationDbContextModelSnapshot : ModelSnapshot {
+        protected override void BuildModel(ModelBuilder modelBuilder) {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("SportsStore.Models.CartLine", b =>
-            {
+            modelBuilder.Entity("SportsStore.Models.CartLine", b => {
                 b.Property<int>("CartLineId")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
@@ -42,8 +38,7 @@ namespace SportsStore.Migrations
                 b.ToTable("CartLine");
             });
 
-            modelBuilder.Entity("SportsStore.Models.Order", b =>
-            {
+            modelBuilder.Entity("SportsStore.Models.Order", b => {
                 b.Property<int>("OrderID")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
@@ -89,8 +84,7 @@ namespace SportsStore.Migrations
                 b.ToTable("Orders");
             });
 
-            modelBuilder.Entity("SportsStore.Models.Product", b =>
-            {
+            modelBuilder.Entity("SportsStore.Models.Product", b => {
                 b.Property<int>("ProductId")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
@@ -113,8 +107,7 @@ namespace SportsStore.Migrations
                 b.ToTable("Products");
             });
 
-            modelBuilder.Entity("SportsStore.Models.CartLine", b =>
-            {
+            modelBuilder.Entity("SportsStore.Models.CartLine", b => {
                 b.HasOne("SportsStore.Models.Order", null)
                     .WithMany("Lines")
                     .HasForeignKey("OrderID");

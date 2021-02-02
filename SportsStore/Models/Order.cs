@@ -2,15 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace SportsStore.Models
-{
-    public class Order
-    {
-        [BindNever] 
-        public int OrderId { get; set; }
+namespace SportsStore.Models {
+    public class Order {
+        [BindNever] public int OrderId { get; set; }
 
-        [BindNever] 
-        public ICollection<CartLine> Lines { get; set; }
+        [BindNever] public ICollection<CartLine> Lines { get; set; }
 
         [Required(ErrorMessage = "Enter the name. Please")]
         public string Name { get; set; }
@@ -22,8 +18,7 @@ namespace SportsStore.Models
 
         public string Line2 { get; set; }
 
-        [Required]
-        public string Line3 { get; set; }
+        [Required] public string Line3 { get; set; }
 
         [Required(ErrorMessage = "Enter the city name. Please")]
         public string City { get; set; }

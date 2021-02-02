@@ -8,18 +8,14 @@ using SportsStore.Controllers;
 using SportsStore.Models;
 using Xunit;
 
-namespace SportsStore.Tests
-{
-    public class AdminControllerTests
-    {
+namespace SportsStore.Tests {
+    public class AdminControllerTests {
         [Fact]
-        public void TestList()
-        {
+        public void TestList() {
             var mock = new Mock<IProductRepository>();
             mock
                 .SetupGet(o => o.Products)
-                .Returns(() => new Product[]
-                {
+                .Returns(() => new Product[] {
                     new() {Category = "C1", Name = "P1"},
                     new() {Category = "C3", Name = "P2"},
                     new() {Category = "C2", Name = "P3"},
@@ -40,12 +36,10 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void CanEditProduct()
-        {
+        public void CanEditProduct() {
             var mock = new Mock<IProductRepository>();
             mock.Setup(r => r.Products)
-                .Returns(() => new Product[]
-                {
+                .Returns(() => new Product[] {
                     new() {Name = "C1", ProductId = 0},
                     new() {Name = "C2", ProductId = 1},
                     new() {Name = "C3", ProductId = 2},
@@ -65,12 +59,10 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void CantEditNotExistingProduct()
-        {
+        public void CantEditNotExistingProduct() {
             var mock = new Mock<IProductRepository>();
             mock.Setup(r => r.Products)
-                .Returns(() => new Product[]
-                {
+                .Returns(() => new Product[] {
                     new() {Name = "C1", ProductId = 0},
                     new() {Name = "C2", ProductId = 1},
                     new() {Name = "C4", ProductId = 3}
@@ -86,8 +78,7 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void CanSaveValidChanges()
-        {
+        public void CanSaveValidChanges() {
             var mock = new Mock<IProductRepository>();
             var mockDataDict = new Mock<ITempDataDictionary>();
 
@@ -103,8 +94,7 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void CanNotSaveInvalidChanges()
-        {
+        public void CanNotSaveInvalidChanges() {
             var mock = new Mock<IProductRepository>();
             var controller = new AdminController(mock.Object);
 
@@ -117,26 +107,21 @@ namespace SportsStore.Tests
             Assert.IsType<ViewResult>(result);
         }
 
-
         [Fact]
-        public void CanDeleteTests()
-        {
-
+        public void CanDeleteTests() {
             var prod1 = new Product {ProductId = 2, Name = "Pear"};
             var prod2 = new Product {ProductId = 4, Name = "Orange"};
-            
+
             var mock = new Mock<IProductRepository>();
             var mockTempData = new Mock<ITempDataDictionary>();
-            mock.SetupGet(m => m.Products).Returns(new[]
-            {
-                new () {ProductId = 1, Name = "Apple"},
+            mock.SetupGet(m => m.Products).Returns(new[] {
+                new() {ProductId = 1, Name = "Apple"},
                 prod1,
-                new () {ProductId = 3, Name = "Lemon"},
+                new() {ProductId = 3, Name = "Lemon"},
                 prod2
             }.AsQueryable());
 
-            var controller = new AdminController(mock.Object) 
-            {
+            var controller = new AdminController(mock.Object) {
                 TempData = mockTempData.Object
             };
 
@@ -144,7 +129,8 @@ namespace SportsStore.Tests
             mock.Verify(rep => rep.DeleteProduct(prod1.ProductId), Times.Once);
         }
 
-        private T GetViewModel<T>(ViewResult result) where T : class => result.ViewData.Model as T;
-        
+        private T GetViewModel<T>(ViewResult result) where T : class {
+            return result.ViewData.Model as T;
+        }
     }
 }
